@@ -17,7 +17,7 @@
 
 <div>
     <h4 align="center">
-        • <a href="https://neurips.cc/virtual/2025/poster/116854" target='_blank'>[pdf]</a> •
+        • <a href="https://openreview.net/pdf?id=fGOZjuzvJb" target='_blank'>[pdf]</a> •
     </h4>
 </div>
 
@@ -26,7 +26,8 @@
 </div>
 
 ## 📮 News
-- Oct. 2024: We will release the code in due time. Stay tuned!
+- Dec. 2024: We released the code. 
+- Oct. 2024: Our paper is accepted at NeurIPS 2025. We will release the code in due time. Stay tuned!
 
 ## 🔝 Citation
 If you find our work useful for your research, kindly consider citing our paper:
