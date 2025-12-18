@@ -1,0 +1,109 @@
+dataset: CIFAR10
+num_classes: 10
+
+model: VGG16
+device: cuda
+
+use_deterministic_algorithms: False
+workers: 0 # for CIFAR10, 0 is faster (all on the main process)
+
+# pre-trained weights
+weights: null
+
+
+# resume
+resume: ''
+start_epoch: 0
+test_only: False
+
+# Distributted settings
+dist:
+  distributed: False
+  sync_bn: False
+  world_size: 1
+  dist_url: 'env://'
+
+
+# Data and IO parameters
+print_freq: 10
+output_dir: models
+save_every: 20
+test_every: 5
+
+# amp for mixed precision training
+amp: False
+
+clip_grad_norm: null
+
+# Training parameters
+training_params:
+  batch_size: 128
+  epochs: 300
+
+  criterion: CrossEntropyLoss
+
+  opt: SGD
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  norm_weight_decay: null # null means same value as wd
+  nesterov: True
+  lr_scheduler: CosineAnnealingLR
+  schedule_kwargs:
+    factor: 0.1
+    patience: 3
+    threshold: 0.001
+    mode: max
+    # default - not used for reducelronplateau
+    step_size: 30
+    lr_gamma: 0.1
+    lr_min: 0
+
+
+  lr_warmup_decay: 0.01
+  lr_warmup_epochs: 0
+  lr_warmup_method: constant
+
+  # model ema
+  model_ema: False
+  model_ema_steps: 32
+  model_ema_decay: 0.99998
+
+  # cut mix
+  cutmix_alpha: 0.0
+  mixup_alpha: 0.0
+
+  # use v2 transform?
+  use_v2: False
+
+  # use label smoothing?
+  label_smoothing: 0.0
+
+  # weight decays for specic layers
+  bias_weight_decay: null
+  transformer_embedding_decay: null
+
+
+transform_train:
+  steps:
+    - type: ToTensor
+    - type: RandomCrop
+      params:
+        size: 32
+        padding: 4
+    - type: RandomHorizontalFlip
+      params:
+        p: 0.8
+    - type: Normalize
+      params:
+        mean: [0.4914, 0.4822, 0.4465]
+        std: [0.2023, 0.1994, 0.2010]
+
+transform_test:
+  steps:
+    - type: ToTensor
+    - type: Normalize
+      params:
+        mean: [0.4914, 0.4822, 0.4465]
+        std: [0.2023, 0.1994, 0.2010]
+

@@ -1,0 +1,8 @@
+class_name: training.augment.AugmentPipe
+p: 0.12
+xflip: 100000000.0
+yflip: 1
+scale: 1
+rotate_frac: 1
+aniso: 1
+translate_frac: 1

@@ -1,0 +1,15 @@
+class_name: sida_training.sida_networks.EDMPrecond_EncoderDecoder
+model_type: SongUNet_EncoderDecoder
+embedding_type: positional
+encoder_type: standard
+decoder_type: standard
+channel_mult_noise: 1
+resample_filter: [ 1, 1 ]
+model_channels: 128
+channel_mult: [ 2, 2, 2 ]
+augment_dim: 9
+dropout: 0.13
+use_fp16: False
+img_resolution: 32
+img_channels: 3
+label_dim: 10
